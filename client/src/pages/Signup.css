@@ -1,0 +1,33 @@
+.signup_bg{
+    background-image: url("https://media.istockphoto.com/photos/user-typing-password-on-computer-security-code-picture-id1283382475?b=1&k=20&m=1283382475&s=170667a&w=0&h=DBb3Xbr8lwlpl0R8apndP1ohBoDKW280jSTsvDq3vEo=");
+    height: 92vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.signup-profile-pic_container{
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.signup-profile-pic{
+    width: 100px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    object-fit: cover;
+    height: 100px;
+}
+
+.add-picture-icon{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    color: green;
+    cursor: pointer;
+    z-index: 99;
+
+}
