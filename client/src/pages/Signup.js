@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './Signup.css';
 import ProPic from '../assets/proPic.jpg'
 import { useSignupUserMutation } from '../services/appApi'
@@ -14,8 +14,8 @@ function  Signup(){
     const[email, setEmail] = useState('');
     const[name, setName] = useState('');
     const[password, setPassword] = useState('');
-    const [signupUser, {isLoading, error}] = useSignupUserMutation();
-
+    const [signupUser] = useSignupUserMutation();        /* , {isLoading, error} */
+    const navigate = useNavigate();
     //image upload
     const [image , setImage] = useState(null);
     const [uploadLoadingImage ,setUploadLoadingImage ] = useState(false)
@@ -59,6 +59,7 @@ function  Signup(){
         signupUser({name, email, password, picture: url}).then(({data}) =>{
             if (data) {
                 console.log(data);
+                navigate('/chat');
             }
         })
     }
@@ -72,7 +73,7 @@ function  Signup(){
                         <h1 className="text-center">Create Account</h1>
 
                         <div className="signup-profile-pic_container">
-                            <img src={imagePreview || ProPic} className="signup-profile-pic"/>
+                            <img src={imagePreview || ProPic} className="signup-profile-pic" alt=""/>
                             <label htmlFor="image-upload" className="image-upload-label">
                                 <i className="fas fa-plus-circle add-picture-icon"></i>
                             </label>

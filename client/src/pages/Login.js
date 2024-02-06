@@ -1,26 +1,30 @@
 import React from "react";
-import {Col, Container, Row} from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import {Col, Container, Form, Row, Button} from "react-bootstrap";
 import './Login.css'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {useLoginUserMutation} from "../services/appApi";
 
 function Login() {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const [loginUser] = useLoginUserMutation();
 
     function handleLogin(e){
         e.preventDefault();
+        loginUser({email, password}).then(({data}) =>{
+            if (data) {
+                navigate('/chat');
+            }
+        })
     }
 
     return (
         <Container>
             <Row>
-                <Col md={6} className="login_bg">
-
-                </Col>
+                <Col md={6} className="login_bg"></Col>
                 <Col md={5} className="d-flex align-items-center justify-content-center flex-direction-column">
         <Form style={{width:"80%", maxWidth:500}} onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
